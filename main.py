@@ -1,16 +1,14 @@
 #Caesar shift
 import string
 shift = 2
-message = "hello there"
-class Caesar_shift(shift, message):
+message = "hello there persom"
 
-    def encode(shift, message):
-        alphabet = string.ascii_lowercase
-        shifted = alphabet[shift:] + alphabet[:shift]
-        table = str.maketrans(alphabet, shifted)
-        encoded = message.translate(table)
-        return(encoded)
-
-
-cipher = Caesar_shift(shift)
-print(cipher.encode(message))
+choice = int(input("1.encode\n2.decode\n"))
+if choice == 1:
+    alphabet = string.ascii_lowercase
+    shifted = alphabet[shift:] + alphabet[:shift]
+    table = str.maketrans(alphabet, shifted)
+    encoded = message.translate(table)
+    print(encoded)
+else:
+    print("hi")
