@@ -20,6 +20,14 @@ while True:
         break
     elif ciphernum == 5:
         continue
-    message = int(input("You chose {} to {} your message\nEnter message without using numbers (ei one,three)\n"
-                        "(Chose corresponding number if needed)\n1.Quit \n2.Home\n".format(cipher choice)))
-    if message =
+    message = input("You chose {} to {} your message\nEnter message without using numbers (ei one,three)\n"
+                        "(Chose corresponding number if needed)\n1.Quit \n2.Home\n".format(cipher,choice))
+    if message == "1":
+        break
+    elif message == "2":
+        continue
+    choice2 = int(input("Your message '{}' was {}d using {}\nNew message:\n...\n(please chose corresponding number)\n1.Quit\n2.Home\n".format(message,choice,cipher)))
+    if choice2 == 1:
+        break
+    elif choice2 ==2:
+        continue
