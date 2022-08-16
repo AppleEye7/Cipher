@@ -4,16 +4,16 @@ phonetics = ["Alpha","Bravo","Charlie","Delta","Echo","Foxtrot","Golf","Hotel","
 alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m",
                "n","o","p","q","r","s","t","u","v","w","x","y","z"]
 check_value = dict(zip(alphabet, phonetics)) # {'a': 'Alpha', 'b': 'Bravo', 'c': 'Charlie'......
-
+newlist = []
 word = input("Please enter your word:\n")
 
 for alph, phone in check_value.items():
     numletters = (len(word))
-    for i in range(numletters):
+    #i = numletters -1
+    for i <= numletters:
+        i -=1
         if word[i] == alph:
-            print(phone)
-            i +=1
-
+            newlist.append(phone)
 
 
 
