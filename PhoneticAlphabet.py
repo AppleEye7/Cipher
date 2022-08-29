@@ -33,12 +33,3 @@ def Phonetic_Alp_en(message):
             phonetic = check_value[letter]
             encoded_message.append(phonetic)
     return(" ".join(encoded_message))
-
-
-
-
-
-
-
-
-
