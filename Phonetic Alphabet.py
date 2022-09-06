@@ -7,24 +7,28 @@ def Phonetic_Alp_de(message):
     check_value = dict(zip(phonetics, alphabet)) # {'Alpha': 'a', 'Bravo': 'b'... joins both lists into dictionary
     decoded_word = []
     # /----------------------Creates a list containing each word when decoded as a separate object
-    word_list = list(message.split(". "))
-    number_of_words = len(word_list)
+    alphabet_word_list = list(message.split(". "))
+    number_of_alphabet_words = len(alphabet_word_list)
     # /----------------------w = 0 each loop w + 1 until it is the amount of objects in wordlist
-    for w in range(0,number_of_words):
-        word = word_list[w]
+    for w in range(0,number_of_alphabet_words):
+        alphabet_word = alphabet_word_list[w]
     # /----------------------splits each word into the letters ie  "Tango Hotel Echo" ---> "Tango","Hotel","Echo"
-        letters_list = word.split(" ")
-        number_of_letters = len(letters_list)
+        phonetic_word_list = alphabet_word.split(" ")
+        number_of_phonetic_words = len(phonetic_word_list)
     # /----------------------l = 0 each loop l + 1 until it is the amount of objects in letters_list
-        for l in range(0, number_of_letters):
-            letter = letters_list[l]
+        for l in range(0, number_of_phonetic_words):
+            phonetic_word = phonetic_word_list[l]
+    # /-----------------------if there is more than one word when decoded
             if w > 0:
-                #required_length = len(check_value)[letter] + 1
-                changed_letter = check_value[letter].rjust(2)
-                decoded_word.append(changed_letter)
+    # /-----------------------for each phonetic word find the corresponding letter in alphabet list
+                alphabet_letter = check_value[phonetic_word]
+    # /-----------------------adds a " " to the front of decoded letter
+                first_alphabet_letter = alphabet_letter.rjust(2)
+    # /------------------------add decoded letter to list
+                decoded_word.append(first_alphabet_letter)
             else:
     # /----------------------For each word to become letter.  alphabet = the corresponding letter in alphabet
-                alphabet = check_value[letter]
+                alphabet = check_value[phonetic_word]
     # /-----------------------Adds the letter to a list
                 decoded_word.append(alphabet)
     # /-----------------------Return each letter with no space in between
