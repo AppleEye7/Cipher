@@ -1,9 +1,11 @@
 def Phonetic_Alp_de(message):
+    global alphabet_letter
     phonetics = ["alpha","bravo","charlie","delta","echo","foxtrot","golf","hotel","india",
                  "juliet","kilo","lima","mike","november","oscar","papa","quebec", "qbec" "romeo",
                  "sierra","tango","uniform","victor","whiskey","x-ray", "xray", "yankee","zulu"]
-    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
-                "n", "o", "p", "q", "q", "r", "s", "t", "u", "v", "w", "x", "x", "y", "z"]
+    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i",
+                "j", "k", "l", "m", "n", "o", "p", "q", "q", "r",
+                "s", "t", "u", "v", "w", "x", "x", "y", "z"]
     check_value = dict(zip(phonetics, alphabet)) # {'Alpha': 'a', 'Bravo': 'b'... joins both lists into dictionary
     decoded_word = []
     # /----------------------Creates a list containing each word when decoded as a separate object
@@ -22,6 +24,7 @@ def Phonetic_Alp_de(message):
             if w > 0:
     # /-----------------------for each phonetic word find the corresponding letter in alphabet list
                 alphabet_letter = check_value[phonetic_word]
+                #print(alphabet_letter)
     # /-----------------------adds a " " to the front of decoded letter
                 first_alphabet_letter = alphabet_letter.rjust(2)
     # /------------------------add decoded letter to list
@@ -33,7 +36,7 @@ def Phonetic_Alp_de(message):
                 decoded_word.append(alphabet)
     # /-----------------------Return each letter with no space in between
     return"".join((decoded_word))
-
+# first letter wrong
 def Phonetic_Alp_en(message):
     phonetics = ["Alpha","Bravo","Charlie","Delta","Echo","Foxtrot","Golf","Hotel","India",
                  "Juliet","Kilo","Lima","Mike","November","Oscar","Papa","Quebec","Romeo",
