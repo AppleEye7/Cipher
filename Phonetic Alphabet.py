@@ -1,7 +1,7 @@
 def Phonetic_Alp_de(message):
     global alphabet_letter
     phonetics = ["alpha","bravo","charlie","delta","echo","foxtrot","golf","hotel","india",
-                 "juliet","kilo","lima","mike","november","oscar","papa","quebec", "qbec" "romeo",
+                 "juliet","kilo","lima","mike","november","oscar","papa","quebec", "qbec", "romeo",
                  "sierra","tango","uniform","victor","whiskey","x-ray", "xray", "yankee","zulu"]
     alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i",
                 "j", "k", "l", "m", "n", "o", "p", "q", "q", "r",
@@ -58,5 +58,6 @@ def Phonetic_Alp_en(message):
     # /----------------------For each letter phonetic = the corresponding word in phonetics
             phonetic = check_value[letter]
     # /-----------------------Return each phonetic word with a space in between
+            
             encoded_message.append(phonetic)
     return(" ".join(encoded_message))
