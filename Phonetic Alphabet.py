@@ -36,7 +36,7 @@ def Phonetic_Alp_de(message):
                 decoded_word.append(alphabet)
     # /-----------------------Return each letter with no space in between
     return"".join((decoded_word))
-# first letter wrong
+
 def Phonetic_Alp_en(message):
     phonetics = ["Alpha","Bravo","Charlie","Delta","Echo","Foxtrot","Golf","Hotel","India",
                  "Juliet","Kilo","Lima","Mike","November","Oscar","Papa","Quebec","Romeo",
@@ -44,7 +44,7 @@ def Phonetic_Alp_en(message):
     alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m",
                 "n","o","p","q","r","s","t","u","v","w","x","y","z"]
     check_value = dict(zip(alphabet, phonetics)) # {'a': 'Alpha', 'b': 'Bravo', 'b'... joins both lists into dictionary
-    encoded_message = []
+    phonetic_word_in_each_words_list = []
     # /----------------------Creates a list containing each word as a separate object
     word_list = list(message.split(" "))
     number_of_words = len(word_list)
@@ -57,7 +57,10 @@ def Phonetic_Alp_en(message):
             letter = word[l]
     # /----------------------For each letter phonetic = the corresponding word in phonetics
             phonetic = check_value[letter]
-    # /-----------------------Return each phonetic word with a space in between
-            
-            encoded_message.append(phonetic)
-    return(" ".join(encoded_message))
+            phonetic_word_in_each_words_list.append(phonetic)
+        phonetic_word_in_each_words = (" ".join(phonetic_word_in_each_words_list))
+        phonetic_word_in_each_words.insert(number_of_letters +1,". ")
+        # /-----------------------Return each phonetic word with a space in between
+    return("".join(phonetic_word_in_each_words))
+
+#hello there person
