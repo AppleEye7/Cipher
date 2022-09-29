@@ -78,18 +78,36 @@ while True:
     # /--------------------------------------------------MORSE CODE-----------------------------------------------\
     if cipher == "MORSE CODE":
         if choice == "ENCODE": # test ----> - . ... -
+            # /----------------------if the message contains numbers  and/or letters continue otherwise break loop
             input_message = input("You chose {} to {} your message\nENTER MESSAGE\n".format(cipher, choice))
+            if any(char in set(string.punctuation) for char in input_message):
+                print("INVALID ENTRY Please enter message without special characters\n<Reload program>")
+                break
+            else:
+                continue
+
         elif choice == "DECODE":  # - . ... - ----> test
-            input_message = input(
-                "You chose {} to {} your message\nENTER MESSAGE with '/' for letters and '|' for words"
-                "e.g. ../-/-..-|-.|\n".format(cipher, choice))
+            input_message = input("You chose {} to {} your message\nENTER MESSAGE with '/' separating letters and '|' "
+                                  "ending words e.g. ../-/-..-|-.|\n".format(cipher, choice))
+
+            # /---------------------------if the message does not contain | and / then is in incorrect format so break
+            # /---------------------------otherwise if not contains - . break
+            if input_message.isalpha(): # if message contains letter
+                print("INVALID ENTRY Please enter message in morse code\n<Reload program>")
+                break
+            elif input_message.isnumeric(): # if message contains numbers
+                print("INVALID ENTRY Please enter message in morse code\n<Reload program>")
+                break
+            elif not '/' and '|' in input_message: # if message does not have / | then incorrect format
+                print("INVALID ENTRY Please enter message with'/' separating letters and '|' separating words "
+                      "\n<Reload program>")
+                break
+            else:
+                pass
+
         message = input_message.lower().strip()
-# /----------------------if the message contains numbers  and/or letters continue otherwise break loop
-        if any(char in set(string.punctuation) for char in input_message):
-            print("INVALID ENTRY Please enter message without special characters\n<Reload program>")
-            break
-        else:
-            message = input_message.lower().strip()
+
+
 
     # /----------------------------------------------------CAESAR SHIFT---------------------------------------------\
     elif cipher == "CAESAR SHIFT":
