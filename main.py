@@ -167,6 +167,10 @@ while True:
             if input_message == "":
                 print("please enter a valid value\n<program terminated>\n<Reload program>")
                 break
+            # /-----------------------if the user enters words that are not in the phonetic alphabet
+            elif input_message not in phonetic_alphabet:
+                print("Please enter words that are in the phonetic alphabet\n<program terminated>\n<Reload program>")
+                break
             # /------------------------if message does not meet the above criteria then it is in the correct format
             else:
                 # /--message is created to be able to use input_message to display the exact message that the user typed
