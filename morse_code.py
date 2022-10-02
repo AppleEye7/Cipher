@@ -4,10 +4,10 @@ Words are separated by '|' and letters in each word are separated by '/'
 
 
 def morse_code_en(message):
-    """takes the user input of message_de and changes the word/s into morse code and returns the encoded message_de in morse
-        code format"""
+    """takes the user input of message and changes the word/s into morse code and returns the encoded message in
+        morse code format"""
     last_letter = []
-    morse_letter = []
+    morse_character = []
     encoded_message = []
 
     morse = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--",
@@ -17,49 +17,55 @@ def morse_code_en(message):
                 "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
                 "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-    check_value = dict(zip(alphabet, morse))  # {'a': '.-', 'b': '-...'... joins both lists into dictionary
+    check_value = dict(zip(alphabet, morse))  # {'a': '.-', 'b': '-...'... joins both lists into a dictionary
     # /----------------------creates a list containing each word as a separate object
     word_list = list(message.split(" "))
     # /----------------------counts the number of words
     number_of_words = len(word_list)
-    # /----------------------runs the loop one more time than there is words
+    # /----------------------runs the loop one more time than there are words
     for w in range(0, number_of_words):
         # /------------------for each word
         word = word_list[w]
-        # /------------------counts the number of letter in the word
+        # /------------------counts the number of letters in the word
         number_of_letters = len(word)
-        # /----------------------runs the loop one more time than there is letters
+        # /----------------------runs the loop one more time than there are letters
         for l in range(0, number_of_letters):
-            # /--------------find each letter in the word
+            # /--------------finds each letter in the word
             letter = word[l]
             # /-------making the output in morse code format with '|' separating words and '\' separating letters------\
 
             # /--------------if it is the last letter in the word------------------------------------------------------\
             if l == number_of_letters - 1:
-                # /----------------------finds the corresponding morse translation for the letter
+                # /----------------------finds the corresponding morse character for the letter
                 last_letter_morse = check_value[letter]
-                # /----------------------adds the morse letter to an array
+                # /----------------------adds the morse character to an array
                 last_letter.append(last_letter_morse)
-                # /-----------------------adds '|' to the array with the morse letter
+                # /-----------------------adds '|' to the array with the morse character
                 last_letter.append('|')
-                # /-----------------------joins the morse letter with '|' so it is for example: '.-|'
+                # /---------------joins the morse character with '|' so it is for example: '.-|' and adds it to an array
                 encoded_message.append("".join(last_letter))
+                # /-----------------------empties the array so the next morse character can be added with '/'
+                last_letter = []
             # /--------------if the letter is not the last in the word
             else:
-                # /----------------------finds the corresponding morse translation for the letter
+                # /----------------------finds the corresponding morse character for the letter
                 morse = check_value[letter]
-                # /----------------------adds the morse letter to an array
-                morse_letter.append(morse)
-                # /-----------------------adds '/' to the array with the morse letter
-                morse_letter.append('/')
-                # /-----------------------joins the morse letter with '/' and adds it to an array for example: ['.-/']
-                encoded_message.append("".join(morse_letter))
+                # /----------------------adds the morse character to an array
+                morse_character.append(morse)
+                # /-----------------------adds '/' to the array with the morse character
+                morse_character.append('/')
+                # /-----------------------joins the morse character with '/' and adds it to an array for example: ['.-/']
+                encoded_message.append("".join(morse_character))
+                # /-----------------------empties the array so the next morse character can be added with '/'
+                morse_character = []
     # /----------------joins each letter (in morse code format) to get one string and returns it
     return "".join(encoded_message)
 
 
+# ..../...././...././.--/---|...././.--/-/---|....|
+
 def morse_code_de(message):
-    """ takes the user input of message_de and changes the word/s (in morse code format) to normal text """
+    """takes the user input of message and changes the word/s (in morse code format) to normal text"""
     decoded_message = []
     morse = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--",
              "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."]

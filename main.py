@@ -14,8 +14,8 @@ shift = 0
 while True:
     # /----------------------Asks user to decode or encode the message-------------------------------------------------\
     try:
-        choice_num = int(input("WELCOME TO CIPHER!\nWhat do you want to do?\n"
-                               "(please type corresponding number e.g. 1)\n1.Encode Message\n2.Decode Message\n3.Quit\n"))
+        choice_num = int(input("WELCOME TO CIPHER!\nWhat do you want to do?\n(please type corresponding number e.g. 1)"
+                               "\n1.Encode Message\n2.Decode Message\n3.Quit\n"))
         # /----------------------Sets choice depending on users input
         if choice_num == 1:
             choice = "ENCODE"
@@ -26,11 +26,11 @@ while True:
             break
         # /---------------------if invalid number input repeat until valid
         else:
-            print("INVALID ENTRY Please type one of: 1 2 3\n")
+            print("INVALID ENTRY Please type one of: 1 2 3\n<program terminated>\n<Reload program>")
             continue
     # /-------------------------if invalid character repeat until valid
     except ValueError:
-        print("INVALID ENTRY Please type one of: 1 2 3\n")
+        print("INVALID ENTRY Please type one of: 1 2 3\n<program terminated>\n<Reload program>")
         continue
     # /----------------------Asks user what cipher to use--------------------------------------------------------------\
     try:
@@ -39,7 +39,7 @@ while True:
                                "3.Phonetic Alphabet\n4.Home\n5.Quit\n".format(choice)))
     # /-----------------------if user input is not a number then ends program
     except ValueError:
-        print("INVALID ENTRY Please enter a value from 1 to 5 (inclusive)\n<Reload program>")
+        print("INVALID ENTRY Please enter a value from 1 to 5 (inclusive)\n<program terminated>\n<Reload program>")
         break
     # /----------------------Sets cipher depending on user input
     try:
@@ -49,10 +49,12 @@ while True:
                 shift = int(
                     input("How many shifts would you like?\n(please type a number between (1 - 26) inclusive\n"))
             except ValueError:
-                print("INVALID ENTRY Please enter a value from 1 to 26 (inclusive)\n<Reload program>")
+                print("INVALID ENTRY Please enter a value from 1 to 26 (inclusive)\n<program terminated>"
+                      "\n<Reload program>")
                 break
             if shift < 0 or shift > 26:
-                print("INVALID ENTRY Please enter a value from 1 to 26 (inclusive)\n<Reload program>")
+                print("INVALID ENTRY Please enter a value from 1 to 26 (inclusive)\n<program terminated>"
+                      "\n<Reload program>")
                 break
         elif cipher_num == 2:
             cipher = "MORSE CODE"
@@ -66,99 +68,104 @@ while True:
             print("<program terminated>")
             break
         else:
-            print("INVALID ENTRY Please type one of: 1 2 3 4 5\n<Reload program>")
+            print("INVALID ENTRY Please type one of: 1 2 3 4 5\n<program terminated>\n<Reload program>")
             break
     # /---------------------if invalid input repeat until valid
     except ValueError:
-        print("INVALID ENTRY Please type one of: 1 2 3 4 5\n<Reload program>")
+        print("INVALID ENTRY Please type one of: 1 2 3 4 5\n<program terminated>\n<Reload program>")
         continue
     # /----------------------Asks user for message---------------------------------------------------------------------\
     # /----------------------------------------------------CAESAR SHIFT------------------------------------------------\
-    # /-------------------------lets user know that there is escape options
-    print("Type '<home>' to go to home and '<quit>' to end program\n")
     if cipher == "CAESAR SHIFT":
         input_message = input("You chose {} to {} your message\nENTER MESSAGE without special characters e.g.'(,@/\n"
                               .format(cipher, choice))
+        # /----------------------if the user entered nothing
+        if input_message == "":
+            print("please enter a valid value\n<program terminated>")
+            break
         # /----------------------if the message contains special characters
-        if any(char in set(string.punctuation) for char in input_message):
+        elif any(char in set(string.punctuation) for char in input_message):
             print("INVALID ENTRY Please enter message without special characters\n<Reload program>")
             break
             # /------------------------if message does not meet the above criteria then it is in the correct format
         else:
             # /------message is created to be able to use input_message to display the exact message that the user typed
-            message = input_message.strip()
+            message = input_message.lower().strip()
     # /--------------------------------------------------MORSE CODE----------------------------------------------------\
     elif cipher == "MORSE CODE":
         if choice == "ENCODE":  # test ----> - . ... -
             input_message = input("You chose {} to {} your message\nENTER MESSAGE\n".format(cipher, choice))
-            # /----------------------if the user entered nothing or a space
-            if input_message == "" or " ":
-                print("please enter a valid value\n<program terminated>")
+            # /----------------------if the user entered nothing
+            if input_message == "":
+                print("please enter a valid value\n<program terminated>\n<Reload program>")
                 break
             # /----------------------if the message contains characters break loop otherwise continue
             if any(char in set(string.punctuation) for char in input_message):
                 print("INVALID ENTRY Please enter message without special characters\n<Reload program>")
                 break
+                # /------------------------if message does not meet the above criteria then it is in the correct format
             else:
-                pass
+                # /--message is created to be able to use input_message to display the exact message that the user typed
+                message = input_message.lower().strip()
         # /------------------------------------------------------------if the user choose to decode a message
         elif choice == "DECODE":  # - . ... - ----> test
             input_message = input("You chose {} to {} your message\nENTER MESSAGE with '/' separating letters "
                                   "and '|' ending every word e.g. ../-/-..-|-.|\n".format(cipher, choice))
             # /----------------------if the user entered nothing or a space
-            if input_message == "" or " ":
-                print("Please enter a valid value\n<program terminated>")
+            if input_message == "":
+                print("Please enter a valid value\n<program terminated>\n<Reload program>")
                 break
             # /----------------------if message contains letter
             if input_message.isalpha():
-                print("INVALID ENTRY Please enter message in morse code\n<Reload program>")
+                print("INVALID ENTRY Please enter message in morse code\n<program terminated>\n<Reload program>")
                 break
             # /-----------------------if message contains numbers
             elif input_message.isnumeric():
-                print("INVALID ENTRY Please enter message in morse code\n<Reload program>")
+                print("INVALID ENTRY Please enter message in morse code\n<program terminated>\n<Reload program>")
                 break
             # /-----------------------if message does not have '/' or '|' then incorrect format
             elif not '/' and '|' in input_message:
                 print("INVALID ENTRY Please enter message with'/' separating letters and '|' ending words "
-                      "\n<Reload program>")
+                      "<program terminated>\n<Reload program>")
                 break
             # /------------------------if message does not meet the above criteria then it is in the correct format
             else:
                 # /--message is created to be able to use input_message to display the exact message that the user typed
                 message = input_message.strip()
-    # /----------------------------------------------------Phonetic Alphabet---------------------------------------------\
+    # /----------------------------------------------------Phonetic Alphabet-------------------------------------------\
     elif cipher == "PHONETIC ALPHABET":
-        if choice == "ENCODE":  # test ----> Tango Echo Sierra Tango
+        if choice == "ENCODE":
             input_message = input("You chose {} to {} your message\nENTER MESSAGE without numbers e.g.2 4 10 or special"
                                   " characters e.g.'(,@/'\n".format(cipher, choice))
             # /-----------------------if message contains special characters
             if any(char in set(string.punctuation) for char in input_message):
-                print("INVALID ENTRY Please enter message without special characters\n<Reload program>")
+                print("INVALID ENTRY Please enter message without special characters\n<program terminated>"
+                      "\n<Reload program>")
                 break
             # /-----------------------if message contains numbers
             if input_message.isnumeric():
-                print("INVALID ENTRY Please enter message without numbers \n<Reload program>")
+                print("INVALID ENTRY Please enter message without numbers\n<program terminated>\n<Reload program>")
                 break
-            # /-----------------------if message contains nothing or a space
-            if input_message == "" or " ":
-                print("Please enter a valid value\n<program terminated>")
+            # /----------------------if the user entered nothing
+            if input_message == "":
+                print("please enter a valid value\n<program terminated>\n<Reload program>")
                 break
             # /-----------------------if message does not meet the above criteria then it is in the correct format
             else:
                 # /--message is created to be able to use input_message to display the exact message that the user typed
-                message = input_message.title().strip()
+                message = input_message.lower().strip()
         # /------------------------------------------------------------if the user choose to decode a message
-        elif choice == "DECODE":  # Tango Echo Sierra Tango ----> test
+        elif choice == "DECODE":
             input_message = input("You chose {} to {} your message\nENTER MESSAGE with spaces between letters and a "
                                   "full stop for a word e.g. Tango Hotel Echo. X-ray\n".format(cipher, choice))
 
             # /------------------------if message contains numbers end program
             if input_message.isnumeric():
-                print("INVALID ENTRY Please enter message without numbers \n<Reload program>")
+                print("INVALID ENTRY Please enter message without numbers\n<program terminated>\n<Reload program>")
                 break
-            # /------------------------if message contains nothing or a space end program
-            if input_message == "" or " ":
-                print("Please enter a valid value\n<program terminated>")
+            # /----------------------if the user entered nothing
+            if input_message == "":
+                print("please enter a valid value\n<program terminated>\n<Reload program>")
                 break
             # /------------------------if message does not meet the above criteria then it is in the correct format
             else:
@@ -166,19 +173,8 @@ while True:
                 message = input_message.title().strip()
     # /--------------------------------if cipher is not one of the above than user did not enter a value for cipher
     else:
-        print("Please chose a cipher to encode or decode your message\n<program terminated>")
+        print("Please chose a cipher to encode or decode your message\n<program terminated>\n<Reload program>")
         break
-    # /----------------------if user typed these in then program does the following
-    # /----------------------Sends user back to first GUI
-    if input_message == "<home>":
-        continue
-    # /----------------------Ends program
-    elif input_message == "<quit>":
-        print("<program terminated>")
-        break
-    # /----------------------if user did not type the above then they entered a message so continue program
-    else:
-        pass
     # /----------------calls the function to decode/encode message depending on the cipher the user chose--------------\
     # /----------------if choice_num == 1 then user chose encode-------------------------------------------------------\
     if choice_num == 1:
@@ -193,7 +189,7 @@ while True:
             new_message = phonetic_alp_en(message)
         # /------------------if cipher_num is not equal to any of the above values then the user did not enter a cipher
         else:
-            print("Please chose a cipher\n<program terminated>")
+            print("Please chose a cipher\n<program terminated>\n<Reload program>")
             break
     # /------------------if choice_num == 2 then user chose decode-----------------------------------------------------\
     elif choice_num == 2:
@@ -208,16 +204,16 @@ while True:
             new_message = phonetic_alp_de(message)
         # /------------------if cipher_num is not equal to any of the above values then the user did not enter a cipher
         else:
-            print("Please chose a cipher\n<program terminated>")
+            print("Please chose a cipher\n<program terminated>\n<Reload program>")
             break
     # /-------------------if choice_num is not equal to any of the above values then the user did not enter their choice
     else:
-        print("INVALID ENTRY Please chose to encode or decode\n<program terminated>")
+        print("Please chose to encode or decode\n<program terminated>\n<Reload program>")
         break
     # /----------------------Displays the original message, new message, cipher, choice--------------------------------\
     try:
         choice2 = int(input("Your message '{}'\nwas {}D using {}\nNew message:\n\n{}\n\n(please type corresponding"
-                            " number e.g. 1)\n1.Home\n2.Quit\n".format(input_message, choice,cipher, new_message)))
+                            " number e.g. 1)\n1.Home\n2.Quit\n".format(input_message, choice, cipher, new_message)))
         # /----------------------Sends user to first GUI
         if choice2 == 1:
             continue
@@ -227,9 +223,9 @@ while True:
             break
         # /----------------------if the user did not enter 1 or 2 end program
         else:
-            print("Please enter one of the values: 1 2\n<program terminated>")
+            print("Please enter one of the values: 1 2\n\n<program terminated>\n<Reload program>")
             break
         # /---------------------if the user did not enter a number end program
     except ValueError:
-        print("Please enter one of the values: 1 2\n<program terminated>")
+        print("Please enter one of the values: 1 2\n<program terminated>\n<Reload program>")
         break

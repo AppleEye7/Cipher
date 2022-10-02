@@ -1,5 +1,5 @@
-"""Caear Shift is a cipher which moves the letters position in the message to the right a certain number to encode the message
-    and moves the position to the left a certain number to decode the message"""
+"""Caear Shift is a cipher which moves the letters position in the message to the right a certain number to encode the
+    message and moves the position to the left a certain number to decode the message"""
 
 import string
 
@@ -11,8 +11,8 @@ def ceaser_shift_en(shift, message):
     alphabet = string.ascii_lowercase
     # /----------------moves each letter before the index of shift value(not inclusive) to the end of string
     shifted = alphabet[shift:] + alphabet[:shift]
-    # /----------------create dictionary for the shifted alphabet to the alphabet
-    table = str.maketrans(alphabet, shifted)
+    # /----------------creates a dictionary for the shifted alphabet to the real alphabet
+    table = str.maketrans(shifted, alphabet)
     # /-----------------letters from the message changed into the letters from table
     encoded = message.translate(table)
     # /-----------------returns the changed message
@@ -26,7 +26,7 @@ def ceaser_shift_de(shift, message):
     alphabet = string.ascii_lowercase
     # /----------------moves each letter before the index of shift value(not inclusive) to the end of string
     shifted = alphabet[shift:] + alphabet[:shift]
-    # /----------------create dictionary for the alphabet to the shifted alphabet
+    # /----------------create dictionary for the real alphabet to the shifted alphabet
     table = str.maketrans(alphabet, shifted)
     # /-----------------letters from the message changed into the letters from table
     decoded = message.translate(table)
