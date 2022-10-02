@@ -1,31 +1,63 @@
-# The phonetic alphabet is 26 words that correspond with the 26 letters of the alphabet.
-# This means that each letter can be substituted for a phonetic word and vise versa.
-# For the purpose of error prevention and since each letter in a word is a phonetic word itself
-
-# the format of converting phonetic words to normal text (DECODING) is as follows: 'Tango Echo Sierra Tango. Oscar November Echo'
-# -----------------------------------Output---------------------------------------:        test.                     one
-# the program recognises that everything before the ". " is part of one word, so it prints the decoded message accurately.
-
-# the format of converting normal text to phonetic words(ENCODING) is as follows: 'test one'
-# ------------------------------------Output--------------------------------------:Tango Echo Sierra Tango. Oscar November Echo
-# the program recognises that " " separates words so that it can access each word individually and print the encoded message accurately.
-
-# The phonetic words are capitalised because that is the way they are written in the real word, so it makes it consistent for users.
+""" The phonetic alphabet is 26 words that correspond with the 26 letters of the alphabet.
+This means that each letter can be substituted for a phonetic word and vise versa.
+In the phonetic alphabet the format is: words are separated by ". " and letters are separated by " ".
+"""
 
 
+def phonetic_alp_en(message):
+    """takes word/s from user and converts them to phonetic words in the correct format"""
+    phonetic_words_in_each_word_list = []
+    phonetic_word_for_each_letter_in_word = []
+    # /----------------------list of all 26 letters and the phonetic alphabet with some typos to account for user error
+    phonetics = ["alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India",
+                 "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Qbec", "Romeo",
+                 "Sierra", "Tango", "Uniform", "Victor", "Whiskey", "X-ray", "Xray", "Yankee", "Zulu"]
+    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+                "n", "o", "p", "q", "q", "r", "s", "t", "u", "v", "w", "x", "x", "y", "z"]
+    check_value = dict(zip(alphabet, phonetics))  # {'a': 'alpha', 'b': 'Bravo', 'b'... joins both lists into dictionary
+    # /----------------------Creates a list containing each word as a separate object
+    word_list = list(message.split(" "))
+    number_of_words = len(word_list)
+    # /----------------------for each word
+    for w in range(0, number_of_words):
+        # /------------------for each word in the word list
+        word = word_list[w]
+        number_of_letters = len(word)
+        # /----------------------for every letter in each word
+        for l in range(0, number_of_letters):
+            # /------------------for each letter in the word
+            letter = word[l]
+            # /----------------------For each letter in the user input word: find the corresponding phonetic word
+            phonetic = check_value[letter]
+            # /----------------------add that phonetic word to list
+            phonetic_word_for_each_letter_in_word.append(phonetic)
+        # /----------------------if the letter is the last in the word
+            if l == number_of_letters - 1:
+                # /----------------------join the encoded letters together so there is " " between them
+                encoded_word = (" ".join(phonetic_word_for_each_letter_in_word))
+                # /----------------------adds the encoded word to list
+                phonetic_words_in_each_word_list.append(encoded_word)
+                # /----------------------makes the list empty for the next user input word
+                phonetic_word_for_each_letter_in_word = []
+            else:
+                continue
+    # /------------joins each encoded word with ". " so the output is: Tango Echo Sierra Tango. Oscar November Echo. Tango Whiskey Oscar
+    # /------------------------------------------------------------------first word-----------second word----------last word------
+    return ". ".join(phonetic_words_in_each_word_list)
 
-def Phonetic_Alp_de(message):
+
+def phonetic_alp_de(message):
     """takes phonetic words from user and converts them to normal text: 'Tango Echo Sierra Tango. Oscar November Echo' ---> test one"""
     # list of all 26 words in the phonetic alphabet words with some typos to account for user error
-    phonetics = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India",
+    phonetics = ["alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India",
                  "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Qbec", "Romeo",
                  "Sierra", "Tango", "Uniform", "Victor", "Whiskey", "X-Ray", "Xray", "Yankee", "Zulu"]
     alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i",
                 "j", "k", "l", "m", "n", "o", "p", "q", "q", "r",
                 "s", "t", "u", "v", "w", "x", "x", "y", "z"]
-    check_value = dict(zip(phonetics, alphabet))  # {'Alpha': 'a', 'Bravo': 'b'... joins both lists into dictionary
+    check_value = dict(zip(phonetics, alphabet))  # {'alpha': 'a', 'Bravo': 'b'... joins both lists into dictionary
     decoded_word = []
-    # /----------------------splits message into separate words
+    # /----------------------splits message_de into separate words
     alphabet_word_list = list(message.split(". "))
     number_of_alphabet_words = len(alphabet_word_list)
     # /----------------------for each word from user input
@@ -57,48 +89,3 @@ def Phonetic_Alp_de(message):
     # /--------input---------'Tango Echo Sierra Tango. Oscar November Echo'
     # /--------Output--------'test one '
     return "".join(decoded_word)
-
-
-
-def Phonetic_Alp_en(message):
-    """takes one or more words from user and converts them to phonetic: test one --->Tango Echo Sierra Tango. Oscar November Echo"""
-    phonetic_words_in_each_word_list = []
-    phonetic_word_for_each_letter_in_word = []
-    # list of all 26 words in the phonetic alphabet with some typos to account for user error
-    phonetics = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India",
-                 "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Qbec", "Romeo",
-                 "Sierra", "Tango", "Uniform", "Victor", "Whiskey", "X-ray", "Xray", "Yankee", "Zulu"]
-    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
-                "n", "o", "p", "q", "q", "r", "s", "t", "u", "v", "w", "x", "x", "y", "z"]
-    check_value = dict(zip(alphabet, phonetics))  # {'a': 'Alpha', 'b': 'Bravo', 'b'... joins both lists into dictionary
-    # /----------------------Creates a list containing each word as a separate object
-    word_list = list(message.split(" "))
-    number_of_words = len(word_list)
-    # /----------------------for each word
-    for w in range(0, number_of_words):
-        # /------------------for each word in the word list
-        word = word_list[w]
-        number_of_letters = len(word)
-        # /----------------------for every letter in each word
-        for l in range(0, number_of_letters):
-            # /------------------for each letter in the word
-            letter = word[l]
-            # /----------------------For each letter in the user input word: find the corresponding phonetic word
-            phonetic = check_value[letter]
-            # /----------------------add that phonetic word to list
-            phonetic_word_for_each_letter_in_word.append(phonetic)
-        # /----------------------if the letter is the last in the word
-        if l == number_of_letters-1:
-            # /----------------------join the encoded letters together so there is " " between them
-            encoded_word = (" ".join(phonetic_word_for_each_letter_in_word))
-            # /----------------------adds the encoded word to list
-            phonetic_words_in_each_word_list.append(encoded_word)
-            # /----------------------makes the list empty for the next user input word
-            phonetic_word_for_each_letter_in_word = []
-        else:
-            continue
-    # /------------joins each encoded word with ". " so the output is: Tango Echo Sierra Tango. Oscar November Echo. Tango Whiskey Oscar
-    # /------------------------------------------------------------------first word-----------second word----------last word------
-    return ". ".join(phonetic_words_in_each_word_list)
-
-# hello there person
