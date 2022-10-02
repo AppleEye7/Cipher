@@ -10,7 +10,8 @@ Moves each letter in message to the right of their position a certain number whi
 
 decoding:
 Moves each letter in message to the left of their position a certain number which is determined by the value of shift
--------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------
 Morse code 
 is a cipher where each letter in the alphabet is a specific series of dots and/or dashes.
 Words are separated by '|' and letters in each word are separated by '/'
@@ -21,6 +22,7 @@ format
 
 decoding:
 takes the user input of message and changes the word/s (in morse code format) to normal text
+
 -------------------------------------------------------------------------------------------------------------------------
 The phonetic alphabet 
 is 26 words that correspond with the 26 letters of the alphabet.
@@ -32,4 +34,5 @@ takes word/s from user and converts them to phonetic words in the correct format
 
 decoding
 takes phonetic words from user and converts them to normal text
+
 -------------------------------------------------------------------------------------------------------------------------
