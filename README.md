@@ -1,6 +1,8 @@
 Cipher is a program which takes the users input of a message and either decodes or encodes the message using the users 
 choice of method (cipher).
-------------------------------------Ciphers------------------------------------------------------------------------------
+
+------------------------------------Ciphers-----------------------------------------------------------------------------------------------------------------
+
 Caear Shift 
 is a cipher which moves the letters position in the message to the right a certain number to encode the message
 and moves the position to the left a certain number to decode the message
