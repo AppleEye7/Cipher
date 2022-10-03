@@ -54,7 +54,7 @@ def morse_code_en(message):
                 morse_character.append(morse)
                 # /-----------------------adds '/' to the array with the morse character
                 morse_character.append('/')
-                # /-----------------------joins the morse character with '/' and adds it to an array for example: ['.-/']
+                # /----------------------joins the morse character with '/' and adds it to an array for example: ['.-/']
                 encoded_message.append("".join(morse_character))
                 # /-----------------------empties the array so the next morse character can be added with '/'
                 morse_character = []
@@ -62,10 +62,9 @@ def morse_code_en(message):
     return "".join(encoded_message)
 
 
-# ..../...././...././.--/---|...././.--/-/---|....|
-
 def morse_code_de(message):
     """takes the user input of message and changes the word/s (in morse code format) to normal text"""
+    shift_num = 2
     decoded_message = []
     morse = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--",
              "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."]
@@ -94,7 +93,7 @@ def morse_code_de(message):
                 # /----------------------find the corresponding letter in the alphabet
                 morse = check_value[letters_in_word[l]]
                 # /----------------------adds " " at the end of the letter
-                last_letter = morse.ljust(2)
+                last_letter = morse.ljust(shift_num)
                 # /----------------------adds the letter with the " " to an array for example ['a ']
                 decoded_message.append(last_letter)
             # /--------------------if the letter is not the last letter in the word
