@@ -53,6 +53,7 @@ def phonetic_alp_en(message):
 
 def phonetic_alp_de(message):
     """takes phonetic words from user and converts them to normal text"""
+    shift_num = 2
     # /----------------------list of all 26 letters and the phonetic alphabet with some typos to account for user error
     phonetics = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India",
                  "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Qbec", "Romeo",
@@ -84,7 +85,7 @@ def phonetic_alp_de(message):
                 alphabet_letter = check_value[phonetic_word]
                 # /-----------------------length of the letter + 1
                 # /-----------------------adds " " at the end of the decoded letter
-                last_alphabet_letter = alphabet_letter.ljust(2)
+                last_alphabet_letter = alphabet_letter.ljust(shift_num)
                 # /------------------------add decoded letter to list
                 decoded_word.append(last_alphabet_letter)
             else:
