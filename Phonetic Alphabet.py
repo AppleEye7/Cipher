@@ -2,23 +2,16 @@
 This means that each letter can be substituted for a phonetic word and vise versa.
 In the phonetic alphabet the format is: words are separated by ". " and letters are separated by " "
 """
-# /-------------------this is outside the function so the program can check if the input message contains phonetic words
-phonetic_alphabet = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India",
-                     "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Qbec", "Romeo",
-                     "Sierra", "Tango", "Uniform", "Victor", "Whiskey", "X-ray", "Xray", "Yankee", "Zulu"]
+# imports the alphabet array and phonetic alphabet
+from alphabets import alphabet_with_typos, phonetic_alphabet
 
 
 def phonetic_alp_en(message):
     """takes word/s from user and converts them to phonetic words in the correct format"""
     phonetic_words_in_each_word_list = []
     phonetic_word_for_each_letter_in_word = []
-    # /----------------------list of all 26 letters and the phonetic alphabet with some typos to account for user error
-    phonetics = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India",
-                 "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Qbec", "Romeo",
-                 "Sierra", "Tango", "Uniform", "Victor", "Whiskey", "X-ray", "Xray", "Yankee", "Zulu"]
-    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
-                "n", "o", "p", "q", "q", "r", "s", "t", "u", "v", "w", "x", "x", "y", "z"]
-    check_value = dict(zip(alphabet, phonetics))  # {'a': 'alpha', 'b': 'Bravo', 'b'... joins both lists into dictionary
+    #------------------------joins the alphabet list(with typos) and phonetic alphabet into a dictionary
+    check_value = dict(zip(alphabet_with_typos(), phonetic_alphabet()))
     # /----------------------Creates a list containing each word as a separate object
     word_list = list(message.split(" "))
     # /----------------------counts how many words there are
@@ -54,14 +47,8 @@ def phonetic_alp_en(message):
 def phonetic_alp_de(message):
     """takes phonetic words from user and converts them to normal text"""
     shift_num = 2
-    # /----------------------list of all 26 letters and the phonetic alphabet with some typos to account for user error
-    phonetics = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India",
-                 "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Qbec", "Romeo",
-                 "Sierra", "Tango", "Uniform", "Victor", "Whiskey", "X-Ray", "Xray", "Yankee", "Zulu"]
-    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i",
-                "j", "k", "l", "m", "n", "o", "p", "q", "q", "r",
-                "s", "t", "u", "v", "w", "x", "x", "y", "z"]
-    check_value = dict(zip(phonetics, alphabet))  # {'alpha': 'a', 'Bravo': 'b'... joins both lists into dictionary
+    #------------------------joins the alphabet list(with typos) and phonetic alphabet into a dictionary
+    check_value = dict(zip(phonetic_alphabet(), alphabet_with_typos()))
     decoded_word = []
     # /----------------------splits message into separate words
     alphabet_word_list = list(message.split(". "))
@@ -71,9 +58,9 @@ def phonetic_alp_de(message):
     for w in range(0, number_of_alphabet_words):
         # /----------------------for each word
         alphabet_word = alphabet_word_list[w]
-        # /----------------------splits each word into the letters(phonetic words) ie  "Tango Hotel Echo" ---> "Tango","Hotel","Echo"
+        # /---------------------splits each word into the phonetic words e.g.'Tango Hotel Echo'-->'Tango','Hotel','Echo'
         phonetic_word_list = alphabet_word.split(" ")
-        # /------------------counts how many letters in the word
+        # /----------------------counts how many letters in the word
         number_of_phonetic_words = len(phonetic_word_list)
         # /----------------------runs the loop one more time than there are letters
         for l in range(0, number_of_phonetic_words):
