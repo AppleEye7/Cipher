@@ -1,6 +1,8 @@
 """morse code is a cipher where each letter in the alphabet is a specific series of dots and/or dashes.
 Words are separated by '|' and letters in each word are separated by '/'
 """
+#imports the alphabet array including numbers and morse alphabet
+from alphabets import alphabet_with_numbers, morse_alphabet
 
 
 def morse_code_en(message):
@@ -9,15 +11,8 @@ def morse_code_en(message):
     last_letter = []
     morse_character = []
     encoded_message = []
-
-    morse = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--",
-             "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..",
-             ".----", "..---", "...-- ", "....-", ".....", "-....", "--...", "---..", "----.", "-----"]
-    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
-                "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-                "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-
-    check_value = dict(zip(alphabet, morse))  # {'a': '.-', 'b': '-...'... joins both lists into a dictionary
+    #------------------------joins the alphabet list(including numbers) and morse alphabet into a dictionary
+    check_value = dict(zip(alphabet_with_numbers(), morse_alphabet()))
     # /----------------------creates a list containing each word as a separate object
     word_list = list(message.split(" "))
     # /----------------------counts the number of words
@@ -66,12 +61,8 @@ def morse_code_de(message):
     """takes the user input of message and changes the word/s (in morse code format) to normal text"""
     shift_num = 2
     decoded_message = []
-    morse = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--",
-             "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."]
-    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
-                "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-
-    check_value = dict(zip(morse, alphabet))  # {'.-': 'a', '-...': 'b'... joins both lists into dictionary
+    #------------------------joins the alphabet list and morse alphabet into a dictionary
+    check_value = dict(zip(morse_alphabet(), (alphabet_with_numbers())))
     # /----------------------creates a list containing each word as a separate object
     word_list = list(message.split("|"))
     # /-----------------------removes the empty object that is after '|' which is created when the array is split
