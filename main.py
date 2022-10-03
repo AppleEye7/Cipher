@@ -2,7 +2,7 @@
 Cipher is a program which takes the users input of a message and either decodes or encodes the message using the users 
 choice of method (cipher).
 """
-
+import string
 from phonetic_alphabet import *  # imports the Phonetic Alphabet cipher functions
 from morse_code import *  # imports the Morse Code cipher functions
 from ceaser_shift import *  # imports the Ceaser Shift cipher functions
@@ -137,8 +137,9 @@ while True:
     # /----------------------------------------------------Phonetic Alphabet-------------------------------------------\
     elif cipher == "PHONETIC ALPHABET":
         if choice == "ENCODE":
-            input_message = input("\nYou chose {} to {} your message\nENTER MESSAGE without numbers e.g.2 4 10 or special"
-                                  " characters e.g.'(,@/'\n".format(cipher, choice))
+            input_message = input(
+                "\nYou chose {} to {} your message\nENTER MESSAGE without numbers e.g.2 4 10 or special"
+                " characters e.g.'(,@/'\n".format(cipher, choice))
             # /-----------------------if message contains special characters
             if any(char in set(string.punctuation) for char in input_message):
                 print("\nINVALID ENTRY Please enter message without special characters\n\n<Program Terminated>"
@@ -170,8 +171,9 @@ while True:
                 print("\nPlease enter a valid value\n\n<Program Terminated>\n<Reload Program>")
                 break
             # /-----------------------if the user enters words that are not in the phonetic alphabet
-            elif input_message not in phonetic_alphabet:
-                print("\nPlease enter words that are in the phonetic alphabet\n\n<Program Terminated>\n<Reload Program>")
+            elif input_message not in phonetic_alphabet():
+                print(
+                    "\nPlease enter words that are in the phonetic alphabet\n\n<Program Terminated>\n<Reload Program>")
                 break
             # /------------------------if message does not meet the above criteria then it is in the correct format
             else:
